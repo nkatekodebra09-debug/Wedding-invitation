@@ -16,5 +16,14 @@ const guestSchema = new mongoose.Schema({
         required: true,
     },
 
-    
+    message: {
+        type: String,
+    },
+
+    timestamp: {
+        type: Date,
+        default: Date.now,
+    }
 })
+
+module.exports = mongoose.model('Guest', guestSchema);

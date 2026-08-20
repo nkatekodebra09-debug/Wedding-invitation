@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#73558f">
+  <meta name="description" content="A welcoming ceremony celebrating Sandisile Nkosi and Tshepo Ndlovu.">
+  <title>Tshepo &amp; Sandisile | Welcoming Ceremony</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="wordmark" href="#top" aria-label="Back to the invitation">T <span>&amp;</span> S</a>
+    <nav aria-label="Invitation sections">
+      <a href="#details">Details</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+    <button class="share-button" id="shareButton" type="button" aria-label="Share this invitation"><span aria-hidden="true">↗</span> Share</button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun-disc"></div>
+        <div class="arch arch-one"></div>
+        <div class="arch arch-two"></div>
+        <div class="leaf leaf-one"></div>
+        <div class="leaf leaf-two"></div>
+        <div class="leaf leaf-three"></div>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">A welcoming ceremony for the bride</p>
+        <h1 id="hero-title">Tshepo <em>&amp;</em><br>Sandisile</h1>
+        <div class="hero-rule"><span></span><i>✦</i><span></span></div>
+        <p class="hero-intro">With joyful hearts, our families invite you to share in the beautiful beginning of our union.</p>
+        <a class="primary-link" href="#details">Join us <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-date" aria-label="Event date">
+        <span>20</span>
+        <small>DECEMBER<br>2026</small>
+      </div>
+    </section>
+
+    <section class="welcome-band" aria-label="Invitation greeting">
+      <p class="section-kicker">Save the date</p>
+      <h2>A day of family, love<br><em>&amp; new beginnings.</em></h2>
+      <p>Come celebrate with us as we welcome the bride into her new family.</p>
+    </section>
+
+    <section class="details-section" id="details" aria-labelledby="details-title">
+      <div class="section-heading">
+        <p class="section-kicker">The when &amp; where</p>
+        <h2 id="details-title">Meet us there</h2>
+      </div>
+      <div class="details-grid">
+        <article class="detail-item"><div class="detail-icon" aria-hidden="true">◷</div><p class="detail-label">When</p><h3>Sunday, 20 December 2026</h3><p>Welcoming ceremony<br>at 10:00 in the morning</p></article>
+        <article class="detail-item"><div class="detail-icon" aria-hidden="true">⌖</div><p class="detail-label">Where</p><h3>Ka-Ndhambi, Giyani<br>Limpopo</h3><p>House next to Dzumeri<br>Assemblies of God</p><a href="https://www.google.com/maps/search/?api=1&query=Ka-Ndhambi%20Giyani%20Limpopo" target="_blank" rel="noreferrer">Open in maps ↗</a></article>
+        <article class="detail-item"><div class="detail-icon" aria-hidden="true">♡</div><p class="detail-label">Dress theme</p><h3>All shades of purple</h3><p>Wear your favourite light<br>shade and celebrate in colour.</p></article>
+      </div>
+    </section>
+
+    <section class="rsvp-section" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="rsvp-copy"><p class="section-kicker">Your presence matters</p><h2 id="rsvp-title">Will you join us?</h2><p>Kindly let us know if you will be celebrating this special day with us.</p><div class="contact"><span>RSVP by phone</span><a href="tel:0735231371">073 523 1371</a><a href="tel:0782284773">078 228 4773</a></div></div>
+      <form id="rsvpForm" class="rsvp-form">
+        <label for="name">Your name<input id="name" name="name" type="text" placeholder="e.g. Nandi Mokoena" required></label>
+        <label for="email">Email address<input id="email" name="email" type="email" placeholder="you@example.com" required></label>
+        <fieldset><legend>Will you be attending?</legend><label class="choice"><input type="radio" name="attending" value="true" required> <span>Joyfully attending</span></label><label class="choice"><input type="radio" name="attending" value="false"> <span>Regretfully unable</span></label></fieldset>
+        <label for="message">A note for the couple <span class="optional">(optional)</span><textarea id="message" name="message" rows="3" placeholder="Leave a little love..."></textarea></label>
+        <button class="submit-button" type="submit">Send RSVP <span aria-hidden="true">→</span></button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer><p>With love, Tshepo &amp; Sandisile</p><p class="footer-mark">T <span>&amp;</span> S</p><p>20 · 12 · 2026</p></footer>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
