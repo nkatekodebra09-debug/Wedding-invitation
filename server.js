@@ -23,7 +23,7 @@ app.use('/api/views', viewRoutes);
 app.use("/api/admin", adminRoutes);
 app.use('/api/media', mediaRoutes);
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
