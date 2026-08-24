@@ -20,6 +20,19 @@ const guestSchema = new mongoose.Schema({
         type: String,
     },
 
+    attendeeCount: {
+        type: Number,
+        min: 1,
+        max: 6,
+        default: 1,
+        required: true,
+    },
+
+    inviteeToken: {
+        type: String,
+        index: true,
+    },
+
     timestamp: {
         type: Date,
         default: Date.now,

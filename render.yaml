@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: tshepo-sandisile-wedding
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+        description: Random secret used to sign admin JWTs. Auto-generated.
+      - key: MONGO_URI
+        sync: false
+        description: MongoDB Atlas connection string (mongodb+srv://...).
+      - key: ADMIN_USER
+        sync: false
+        description: Admin username (set in the Render dashboard before first boot).
+      - key: ADMIN_PASSWORD
+        sync: false
+        description: Admin password used to seed the bcrypt hash on first deploy (set in dashboard).

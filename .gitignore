@@ -107,6 +107,12 @@ dist
 # Docusaurus cache and generated files
 .docusaurus
 
+# Local invitee list (contains personal emails)
+invitees.json
+
+# Admin credentials — generate locally and store only in password manager / Render env vars.
+ADMIN_CREDENTIALS.txt
+
 # Serverless directories
 .serverless/
 

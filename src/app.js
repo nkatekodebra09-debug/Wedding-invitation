@@ -1,4 +1,4 @@
-import { Navbar, setupShareButton } from './components/Navbar.js';
+import { Navbar } from './components/Navbar.js';
 import { Footer } from './components/Footer.js';
 import { Home } from './pages/Home.js';
 import { RSVP } from './pages/RSVP.js';
@@ -11,8 +11,10 @@ function render() {
   const route = window.location.hash.slice(1).split('?')[0] || 'home';
   const page = route === 'rsvp' ? RSVP() : route === 'admin' ? Admin() : Home();
   app.innerHTML = `${Navbar()}${page}${Footer()}`;
-  setupShareButton();
-  if (route === 'rsvp') import('./components/RSVPForm.js').then(({ setupRSVPForm }) => setupRSVPForm());
+  if (route === 'rsvp') {
+    const token = new URLSearchParams(window.location.search).get('token');
+    import('./components/RSVPForm.js').then(({ setupRSVPForm }) => setupRSVPForm({ token }));
+  }
   if (route === 'admin') setupAdmin();
   if (route === 'home') logInvitationView().catch(() => {});
   if (route === 'home') {
