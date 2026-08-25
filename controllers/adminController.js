@@ -11,7 +11,8 @@ const loginAdmin = async (req, res) => {
             console.error('JWT_SECRET is not set in the environment. Admin login will fail until it is configured.');
         }
 
-        const { username, password } = req.body;
+        const username = (req.body?.username || '').trim();
+        const password = (req.body?.password || '').trim();
         const admin = await Admin.findOne({ username });
 
         if (!admin) {

@@ -34,7 +34,7 @@ export function Home() {
   <p class="detail-label">Where</p>
   <h3>Ka-Dzumeri
   / 0833, Giyani<br>Limpopo</h3><p>House next to Dzumeri<br>AOG</p>
-  <a href="https://www.google.com/maps/place/DZUMERI+AOG/@-23.4255476,30.5458159,11z/data=!4m10!1m2!2m1!1sDzumeri+assemblies+of+god!3m6!1s0x1ec46f5b413ab2cd:0x16ea77515c8000ef!8m2!3d-23.5745959!4d30.7016306!15sChlEenVtZXJpIGFzc2VtYmxpZXMgb2YgZ29kIgOIAQGSARBjaHJpc3RpYW5fY2h1cmNo4AEA!16s%2Fg%2F11gfgqy52l?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Open in maps ↗</a></article><article class="detail-item"><div class="detail-icon">♡</div><p class="detail-label">Dress theme</p><h3>All shades of purple</h3><p>Wear your favourite light<br>shade and celebrate in colour.</p></article></div>
+  <a href="https://www.google.com/maps/place/DZUMERI+AOG/@-23.4255476,30.5458159,11z/data=!4m10!1m2!2m1!1sDzumeri+assemblies+of+god!3m6!1s0x1ec46f5b413ab2cd:0x16ea77515c8000ef!8m2!3d-23.5745959!4d30.7016306!15sChlEenVtZXJpIGFzc2VtYmxpZXMgb2YgZ29kIgOIAQGSARBjaHJpc3RpYW5fY2h1cmNo4AEA!16s%2Fg%2F11gfgqy52l?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Open in maps ↗</a></article><article class="detail-item"><div class="detail-icon">♡</div><p class="detail-label">Dress theme</p><h3>All shades of purple</h3><p>Wear your favourite light<br>shade/ the traditional attire of your choice and celebrate in colour.</p></article></div>
   
   </section>
   </main>`

@@ -8,6 +8,7 @@
     "dev": "nodemon server.js",
     "seed:admin": "node scripts/seedAdmin.js",
     "seed:invitees": "node scripts/seedInvitees.js",
+    "diagnose:admin": "node scripts/diagnoseAdmin.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
