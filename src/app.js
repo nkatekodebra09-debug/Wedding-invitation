@@ -151,7 +151,7 @@ function render() {
   } else {
     app.innerHTML = splashMarkup() + routeMarkup('home', Home());
     setupWelcomeSplash();
-    logInvitationView().catch(() => {});
+    // logInvitationView().catch(() => {});
   }
 }
 

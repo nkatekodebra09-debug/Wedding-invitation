@@ -1,6 +1,5 @@
 export function InvitationCard() {
-  return
-   `<section class="hero" aria-labelledby="hero-title">
+  return `<section class="hero" aria-labelledby="hero-title">
 
     <div class="hero-art" aria-hidden="true">
 
