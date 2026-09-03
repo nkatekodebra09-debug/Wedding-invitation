@@ -1,4 +1,4 @@
-import { submitRSVP, getInviteeSession } from '../services/api.js';
+import { submitRSVP, getInvitee } from '../services/api.js';
 
 const SUCCESS_MESSAGE = `We are delighted to celebrate this special day with you! Kindly arrive on time to share in all the beautiful moments. Please dress elegantly in shades of purple to honor the theme  and you are warmly welcome to wear traditional attire of your choice. Children are invited, and we trust parents will help ensure their comfort throughout the festivities. Your love and presence are the greatest gifts we could ask for, but if you wish to bless us further, wedding gifts will be graciously appreciated. We look forward to creating cherished memories together on this joyous occasion.`;
 
@@ -12,14 +12,14 @@ export function RSVPForm() {
   return `<form id="rsvpForm" class="rsvp-form"><label for="name">Your name<input id="name" name="name" type="text" placeholder="e.g. Nandi Mokoena" required></label><label for="email">Email address<input id="email" name="email" type="email" placeholder="you@example.com" required></label><fieldset><legend>Will you be attending?</legend><label class="choice"><input type="radio" name="attending" value="true" required> <span>Joyfully attending</span></label><label class="choice"><input type="radio" name="attending" value="false"> <span>Regretfully unable</span></label></fieldset><label for="attendeeCount">How many people attending? <span class="optional">(including yourself)</span><input id="attendeeCount" name="attendeeCount" type="number" min="1" max="6" value="1" required></label><label for="message">A note for the couple <span class="optional">(optional)</span><textarea id="message" name="message" rows="3" placeholder="Leave a little love..."></textarea></label><button class="submit-button" type="submit">Send RSVP <span aria-hidden="true">→</span></button><p class("form-status" id="formStatus" role="status" aria-live("polite"></p></form>`;
 }
 
-export function setupRSVPForm() {
+export function setupRSVPForm({ token } = {}) {
   const form = document.querySelector('#rsvpForm');
   if (!form) return;
 
   const button = form.querySelector('button[type="submit"]');
   const status = document.querySelector('#formStatus');
 
-  const inviteeRequest = getInviteeSession();
+  const inviteeRequest = token ? getInvitee(token) : Promise.resolve(null);
   inviteeRequest
     .then((response) => {
       const data = response?.data;
@@ -50,6 +50,7 @@ export function setupRSVPForm() {
     button.textContent = 'Sending...';
     try {
       await submitRSVP({
+        ...(token ? { token } : {}),
         name: values.get('name'),
         email: values.get('email'),
         attending: values.get('attending') === 'true',

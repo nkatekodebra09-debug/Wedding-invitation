@@ -1,25 +1,20 @@
 const Guest = require('../models/Guest.js');
 const Invitee = require('../models/Invitee.js');
-const { getInviteeAccessToken } = require('../middleware/inviteAccess.js');
 
 const submitRSVP = async (req, res) => {
     try {
         const { token, name, email, attending, attendeeCount, message } = req.body;
 
-        const accessToken = getInviteeAccessToken(req);
-        if (!accessToken) {
-            return res.status(401).json({ error: 'A private invitation link is required.' });
-        }
-        if (token && token !== accessToken) {
-            return res.status(403).json({ error: 'This invitation link is not valid.' });
-        }
+        let invitee;
+        if (token) {
+            invitee = await Invitee.findOne({ token });
+            if (!invitee) {
+                return res.status(404).json({ error: 'Invalid invitation token.' });
+            }
 
-        const invitee = await Invitee.findOne({ token: accessToken });
-        if (!invitee) {
-            return res.status(403).json({ error: 'This invitation link is not valid.' });
-        }
-        if (invitee.rsvpSubmitted) {
-            return res.status(409).json({ error: 'This invitation has already been used.' });
+            if (invitee.rsvpSubmitted) {
+                return res.status(409).json({ error: 'This invitation has already been used.' });
+            }
         }
 
         const count = Number(attendeeCount);
@@ -33,7 +28,7 @@ const submitRSVP = async (req, res) => {
             attending,
             message,
             attendeeCount: count,
-            inviteeToken: accessToken,
+            ...(token ? { inviteeToken: token } : {}),
             timestamp: Date.now(),
         });
 
@@ -52,13 +47,10 @@ const submitRSVP = async (req, res) => {
     }
 };
 
-const sendInvitee = async (req, res, token) => {
+const getInviteeByToken = async (req, res) => {
     try {
-        const accessToken = getInviteeAccessToken(req);
-        if (!accessToken || (token && token !== accessToken)) {
-            return res.status(403).json({ error: 'This invitation link is not valid.' });
-        }
-        const invitee = await Invitee.findOne({ token: accessToken });
+        const { token } = req.params;
+        const invitee = await Invitee.findOne({ token });
         if (!invitee) {
             return res.status(404).json({ error: 'Invalid invitation token.' });
         }
@@ -75,7 +67,4 @@ const sendInvitee = async (req, res, token) => {
     }
 };
 
-const getInviteeByToken = (req, res) => sendInvitee(req, res, req.params.token);
-const getInviteeSession = (req, res) => sendInvitee(req, res);
-
-module.exports = { submitRSVP, getInviteeByToken, getInviteeSession };
+module.exports = { submitRSVP, getInviteeByToken };
