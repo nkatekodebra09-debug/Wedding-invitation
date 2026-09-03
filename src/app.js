@@ -126,9 +126,9 @@ function renderRoute() {
   ensureAudioElement();
 
   if (route === 'rsvp') {
-    const token = new URLSearchParams(window.location.search).get('token');
-    import('./components/RSVPForm.js').then(({ setupRSVPForm }) => setupRSVPForm({ token }));
+    import('./components/RSVPForm.js').then(({ setupRSVPForm }) => setupRSVPForm());
   }
+  if (window.location.search) window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
   if (route === 'admin') {
     setupAdmin();
   } else {

@@ -8,6 +8,7 @@ const guestRoutes = require('./routes/guestRoutes.js')
 const viewRoutes = require('./routes/viewRoutes.js')
 const adminRoutes = require('./routes/adminRoutes.js');
 const mediaRoutes = require('./routes/mediaRoutes.js');
+const { protectInvitation } = require('./middleware/inviteAccess.js');
 
 dotenv.config();
 connectDB();
@@ -15,6 +16,7 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(protectInvitation);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
