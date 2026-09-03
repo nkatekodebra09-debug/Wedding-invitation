@@ -50,9 +50,22 @@ function renderRow(guest) {
   `;
 }
 
+function renderAttendingRow(guest) {
+  const totalPeople = Number(guest.attendeeCount) || 1;
+  const extraGuests = Math.max(0, totalPeople - 1);
+  const guestLabel = extraGuests === 1 ? 'guest' : 'guests';
+  return `<tr><td>${escape(guest.name)}</td><td>${extraGuests ? `Bringing ${extraGuests} ${guestLabel}` : 'Coming alone'}</td></tr>`;
+}
+
+function renderDeclinedRow(guest) {
+  return `<li>${escape(guest.name)}</li>`;
+}
+
 export function StatsDashboard(payload) {
   const { stats = {}, invitees = [], walkIns = [] } = payload || {};
   const rows = [...invitees, ...walkIns];
+  const attending = rows.filter((guest) => guest.rsvpSubmitted && guest.attending);
+  const declined = rows.filter((guest) => guest.rsvpSubmitted && guest.attending === false);
 
   return `
     <div class="stats-grid">
@@ -80,6 +93,33 @@ export function StatsDashboard(payload) {
         <span>Walk-ins</span>
         <strong>${escape(stats.walkIns ?? 0)}</strong>
       </article>
+    </div>
+
+    <div class="rsvp-summary-sections">
+      <section class="rsvp-summary rsvp-summary-attending" aria-labelledby="attending-title">
+        <div class="rsvp-summary-heading">
+          <div>
+            <p class="section-kicker">Confirmed responses</p>
+            <h2 id="attending-title">Attending</h2>
+          </div>
+          <strong class="rsvp-summary-count">${escape(stats.totalAttendees ?? 0)} <span>people</span></strong>
+        </div>
+        <table class="rsvp-summary-table">
+          <thead><tr><th scope="col">Name</th><th scope="col">Guests Coming With</th></tr></thead>
+          <tbody>${attending.length ? attending.map(renderAttendingRow).join('') : '<tr><td colspan="2" class="admin-empty">No attending responses yet.</td></tr>'}</tbody>
+        </table>
+      </section>
+
+      <section class="rsvp-summary rsvp-summary-declined" aria-labelledby="declined-title">
+        <div class="rsvp-summary-heading">
+          <div>
+            <p class="section-kicker">Responses received</p>
+            <h2 id="declined-title">Declined</h2>
+          </div>
+          <strong class="rsvp-summary-count">${escape(stats.totalDeclined ?? 0)} <span>people</span></strong>
+        </div>
+        <ul class="rsvp-declined-list">${declined.length ? declined.map(renderDeclinedRow).join('') : '<li class="admin-empty">No declined responses yet.</li>'}</ul>
+      </section>
     </div>
 
     <section class="admin-table-section">

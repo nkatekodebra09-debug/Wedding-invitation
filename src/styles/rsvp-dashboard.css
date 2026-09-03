@@ -1,0 +1,92 @@
+.rsvp-summary-sections {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 auto 2rem;
+  max-width: 1080px;
+}
+
+.rsvp-summary {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+}
+
+.rsvp-summary-attending {
+  border-top: 4px solid #557d62;
+}
+
+.rsvp-summary-declined {
+  border-top: 4px solid #a35f67;
+}
+
+.rsvp-summary-heading {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.rsvp-summary-heading h2 {
+  font-size: 2rem;
+}
+
+.rsvp-summary-count {
+  color: var(--deep);
+  font: 600 1.8rem/1 var(--serif);
+  text-align: right;
+}
+
+.rsvp-summary-count span {
+  display: block;
+  color: var(--muted);
+  font: 600 .65rem/1.2 var(--sans);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.rsvp-summary-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.rsvp-summary-table th,
+.rsvp-summary-table td {
+  border-top: 1px solid var(--line);
+  padding: .7rem .25rem;
+  text-align: left;
+}
+
+.rsvp-summary-table th {
+  color: var(--muted);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.rsvp-summary-table td:last-child {
+  color: var(--deep);
+  font-weight: 600;
+  text-align: right;
+}
+
+.rsvp-declined-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rsvp-declined-list li {
+  border-top: 1px solid var(--line);
+  padding: .7rem .25rem;
+}
+
+@media (max-width: 700px) {
+  .rsvp-summary-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-summary {
+    padding: 1.25rem;
+  }
+}
