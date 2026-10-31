@@ -24,3 +24,21 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
         description: Admin password used to seed the bcrypt hash on first deploy (set in dashboard).
+      - key: SMTP_HOST
+        sync: false
+        description: SMTP provider host, for example smtp.gmail.com.
+      - key: SMTP_PORT
+        sync: false
+        description: SMTP provider port, usually 587.
+      - key: SMTP_SECURE
+        value: "false"
+        description: Set true only when using an SSL SMTP port such as 465.
+      - key: SMTP_USER
+        sync: false
+        description: SMTP account username.
+      - key: SMTP_PASSWORD
+        sync: false
+        description: SMTP password or provider app password.
+      - key: MAIL_FROM
+        sync: false
+        description: Sender address approved by your SMTP provider.

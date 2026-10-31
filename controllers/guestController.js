@@ -1,5 +1,6 @@
 const Guest = require('../models/Guest.js');
 const Invitee = require('../models/Invitee.js');
+const { sendRsvpConfirmation } = require('../services/emailService.js');
 
 const submitRSVP = async (req, res) => {
     try {
@@ -36,6 +37,12 @@ const submitRSVP = async (req, res) => {
             invitee.rsvpSubmitted = true;
             invitee.submittedAt = new Date();
             await invitee.save();
+        }
+
+        try {
+            await sendRsvpConfirmation({ name, email, attending, attendeeCount: count });
+        } catch (emailError) {
+            console.error('RSVP saved, but confirmation email failed:', emailError.message);
         }
 
         res.json({

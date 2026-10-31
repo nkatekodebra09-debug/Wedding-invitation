@@ -59,6 +59,9 @@ git push -u origin main
    - `MONGO_URI` → paste the Atlas connection string
    - `ADMIN_USER` → from `ADMIN_CREDENTIALS.txt`
    - `ADMIN_PASSWORD` → from `ADMIN_CREDENTIALS.txt`
+   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` → from your email provider
+   - `SMTP_SECURE` → `false` for port `587`, or `true` for port `465`
+   - `MAIL_FROM` → the approved sender email address
 5. Click **Deploy**. The first build takes a few minutes.
 
 ## 4. Seed the admin + invitees
@@ -78,6 +81,8 @@ npm run seed:invitees
 - Visit `https://<your-app>.onrender.com/healthz` → `{"status":"ok",...}`
 - Visit `https://<your-app>.onrender.com/` → guest invitation.
 - Visit `https://<your-app>.onrender.com/#admin` → login form. Log in with the credentials in `ADMIN_CREDENTIALS.txt`. You should see the stat tiles and the full guest table with status badges.
+
+After SMTP is configured, every successful RSVP sends the guest a thank-you email containing the ceremony date, purple dress theme, and venue address. Email delivery failures are logged without invalidating a saved RSVP.
 
 ## 6. Custom domain (optional)
 
